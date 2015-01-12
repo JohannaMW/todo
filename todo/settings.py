@@ -37,11 +37,20 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'todo_list',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'djcelery',
+    'djcelery_email',
 )
+
+SOCIALACCOUNT_PROVIDERS = \
+    { 'facebook':
+          {'SCOPE': ['email', 'publish_stream'],
+           'METHOD': 'js_sdk'}
+    }
 
 SITE_ID = 1
 
@@ -59,12 +68,20 @@ ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
+
+#EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+#EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
+#CELERY_EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by e-mail
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
@@ -78,11 +95,16 @@ ACCOUNT_SIGNUP_FORM_CLASS = 'todo_list.forms.SignUpForm'
 ACCOUNT_AUTHENTICATION_METHOD = "email" # Defaults to username_email
 ACCOUNT_USERNAME_REQUIRED = False       # Defaults to True
 ACCOUNT_EMAIL_REQUIRED = True           # Defaults to False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Please verify your account!]"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/accounts/login/"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/accounts/login/"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 LOGIN_URL = "/"
-
+#LOGIN_REDIRECT_URL = "/accounts/signup/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
