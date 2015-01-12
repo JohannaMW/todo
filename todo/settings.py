@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.facebook',
     'djcelery',
     'djcelery_email',
+    'rest_framework',
 )
 
 SOCIALACCOUNT_PROVIDERS = \
