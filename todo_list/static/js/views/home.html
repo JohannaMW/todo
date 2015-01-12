@@ -1,3 +1,16 @@
 
-    <h1>Angular Home</h1>
-
+    <h1>Tasks</h1>
+    <ul>
+<div ng-repeat="task in tasks">
+    <li>{{ task.title }}
+    <ul>
+        <li>
+            {{ task.description }}
+        </li>
+        <li>
+            {{ task.due }}
+        </li>
+        </ul>
+    </li>
+</div>
+        </ul>
