@@ -11,7 +11,7 @@ router.register(r'tasks', TaskViewSet, base_name='tasks')
 
 urlpatterns = patterns('',
     # REST Routes
-    url(r'^', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     url(r'^$', 'todo_list.views.index', name='index'),

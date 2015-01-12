@@ -1,13 +1,57 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-     <link rel="stylesheet" type="text/css" href="../static/css/styling.css">
     <title>TODO</title>
+
+    <!-- jQuery -->
+    <script src="{% static "js/vendors/jquery.js" %}"></script>
+
+    <script type="text/javascript">var csrftoken = "{% csrf_token %}";</script>
+
+    <!------- Angular ------->
+    <script src="{% static "js/vendors/angular/angular.js" %}"></script>
+    <script src="{% static "js/vendors/angular/angular-resource.js" %}"></script>
+    <script src="{% static "js/vendors/angular/angular-route.js" %}"></script>
+    <script src="{% static "js/vendors/angular/angular-cookies.js" %}"></script>
+
+
+    <!------- Bootstrap ------->
+    <script src="{% static "js/vendors/angular-ui/ui-bootstrap-tpls-0.11.2.min.js" %}"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static "js/vendors/angular-ui/ui-bootstrap-tpls-0.11.2.js" %}"></script>
+
+    <!-- JavaScript -->
+    <script src="{% static "js/angular_app.js" %}"></script>
+
+    <!------- Factories ------->
+
+
+    <!--- Filters ---->
+
+    <!--- Directives ---->
+
+    <!------- Controllers ------->
+    <script src="{% static "js/controllers/homeController.js" %}"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/styling.css" %}">
+
     {% block header %}
     {% endblock header %}
+
 </head>
 <body>
+<!-- Angular -->
+    <div ng-app="todo">
+        <!-- Our view templates will programmatically be inserted into the ng-view div -->
+        <div ng-view>
+
+        </div>
+    </div>
+
 {% block content %}
 {% endblock content %}
 </body>
