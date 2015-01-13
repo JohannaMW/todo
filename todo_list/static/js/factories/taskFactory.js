@@ -1,7 +1,7 @@
 todo.factory('TaskFactory', function($http) {
     return {
         getTasks: function(callback) {
-            $http.get('/api/tasks')
+            $http.get('/api/tasks/' )
                 .success(function(response) {
                     callback(response);
                 }).error(function(error) {

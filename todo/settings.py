@@ -105,7 +105,7 @@ SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 LOGIN_URL = "/"
-#LOGIN_REDIRECT_URL = "/accounts/signup/"
+LOGIN_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

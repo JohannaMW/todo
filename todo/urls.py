@@ -17,6 +17,9 @@ urlpatterns = patterns('',
     url(r'^$', 'todo_list.views.index', name='index'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    #AJAX CALLS
+    url(r'^get_user/', 'todo_list.views.get_user', name='get_user'),
 )
 
 if settings.DEBUG:

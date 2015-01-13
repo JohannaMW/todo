@@ -28,6 +28,7 @@
 
     <!------- Factories ------->
     <script src="{% static "js/factories/taskFactory.js" %}"></script>
+    <script src="{% static "js/factories/userFactory.js" %}"></script>
 
     <!--- Filters ---->
 
@@ -44,6 +45,8 @@
 
 </head>
 <body>
+{% block content %}
+{% endblock content %}
 <!-- Angular -->
     <div ng-app="todo">
         <!-- Our view templates will programmatically be inserted into the ng-view div -->
@@ -51,8 +54,5 @@
 
         </div>
     </div>
-
-{% block content %}
-{% endblock content %}
 </body>
 </html>

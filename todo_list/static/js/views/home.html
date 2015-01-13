@@ -1,16 +1,8 @@
 
-    <h1>Tasks</h1>
-    <ul>
-<div ng-repeat="task in tasks">
-    <li>{{ task.title }}
-    <ul>
-        <li>
-            {{ task.description }}
-        </li>
-        <li>
-            {{ task.due }}
-        </li>
-        </ul>
-    </li>
+<button ng-click="creating();">Create a new Task!</button>
+<div ng-show="create">
+    <h3>Create a Task</h3>
+    <input placeholder="Title of Task" class="form-control" ng-model="newTaskTitle"/>
+    <input type="datetime-local" placeholder="When is the Task due?" class="form-control" ng-model="newTaskDue"/>
+    <input placeholder="Describe your task" class="form-control" ng-model="newTaskDescription">
 </div>
-        </ul>
