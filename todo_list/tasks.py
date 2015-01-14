@@ -29,7 +29,7 @@ def send_due_mail():
 def send_notify_mail(message, **kwargs):
     conn = get_connection(backend=BACKEND)
     try:
-        result = conn.senf_messages([message])
+        result = conn.send_messages([message])
         logger.debug("Message successfully sent")
         return result
     except Exception as e:

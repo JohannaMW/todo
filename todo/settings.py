@@ -63,9 +63,15 @@ ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
-#EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
-#CELERY_EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
+CELERY_EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Host for sending e-mail.
+EMAIL_HOST = 'localhost'
+
+# Port for sending e-mail.
+EMAIL_PORT = 1025
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
