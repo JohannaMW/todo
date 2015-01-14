@@ -63,7 +63,6 @@ ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
-#EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 #EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
 #CELERY_EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
