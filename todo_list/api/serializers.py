@@ -13,7 +13,6 @@ class UserSerializer(serializers.ModelSerializer):
         return Task.objects.filter(owner=obj).values()
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = UserSerializer(read_only=True)
 
     class Meta:
         model = Task

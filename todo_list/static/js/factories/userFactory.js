@@ -10,7 +10,7 @@ todo.factory('UserFactory', function($http) {
         },
 
         getTasks: function(user, callback) {
-            $http.get('/api/users/' + user.pk)
+            $http.get('/api/users/' + user)
                 .success(function(response) {
                     callback(response);
                 }).error(function(error) {

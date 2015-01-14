@@ -8,7 +8,7 @@ todo.factory('TaskFactory', function($http) {
                     console.log(error);
                 });
         },
-        deleteTasks: function (task, callback) {
+        deleteTask: function (task, callback) {
             $http.delete('/api/tasks/' + task.id)
                 .success(function(response) {
                     callback(response);
@@ -17,7 +17,7 @@ todo.factory('TaskFactory', function($http) {
                 });
         },
         editTask: function (task, data, callback) {
-            $http.put('/api/tasks/', task.id, data)
+            $http.put('/api/tasks/' + task.id, data)
                 .success(function (response) {
                     callback(response);
                 }).error(function (error) {

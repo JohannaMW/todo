@@ -1,22 +1,4 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <h1>Your Tasks</h1>
-    <ul>
-<div>
-    {% for task in tasks %}
-    <li>{{ task.title }}
-    <ul>
-        <li>
-            {{ task.description }}
-        </li>
-        <li>
-            {{ task.due }}
-        </li>
-        </ul>
-    </li>
-    {% endfor %}
-</div>
-        </ul>
 {% endblock content %}

@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from datetime import timedelta
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -84,6 +86,13 @@ AUTHENTICATION_BACKENDS = (
 
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 
+CELERYBEAT_SCHEDULE = {
+    'check-every-30-seconds':  {
+        'task': 'send_due_mail',
+        'schedule': timedelta(seconds=30),
+    }
+}
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.auth.context_processors.auth",
@@ -106,6 +115,12 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 LOGIN_URL = "/"
 LOGIN_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+       'rest_framework.permissions.AllowAny',
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
