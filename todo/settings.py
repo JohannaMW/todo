@@ -44,7 +44,6 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'djcelery',
-    'djcelery_email',
     'rest_framework',
 )
 
@@ -63,7 +62,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
-
 
 #EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 #EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'

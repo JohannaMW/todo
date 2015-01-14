@@ -5,6 +5,9 @@ from todo.celery import app
 import models
 import datetime
 from django.core import mail
+from celery.utils.log import get_task_logger
+
+logger = get_task_logger(__name__)
 
 BACKEND = getattr(settings, 'CELERY_EMAIL_BACKEND',
                   'django.core.mail.backends.smtp.EmailBackend')
@@ -24,7 +27,6 @@ def send_due_mail():
 
 @app.task(name='send_notify_mail')
 def send_notify_mail(message, **kwargs):
-    logger = send_notify_mail.get_logger()
     conn = get_connection(backend=BACKEND)
     try:
         result = conn.senf_messages([message])
