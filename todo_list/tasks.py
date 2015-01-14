@@ -1,20 +1,37 @@
 from django.conf import settings
 from django.core.mail import get_connection
 from django.utils.timezone import utc
-from models import Task
-from celery.task import Task
 from todo.celery import app
 import models
 import datetime
 from django.core import mail
+
+BACKEND = getattr(settings, 'CELERY_EMAIL_BACKEND',
+                  'django.core.mail.backends.smtp.EmailBackend')
 
 @app.task(name='send_due_mail')
 def send_due_mail():
     tasks = models.Task.objects.all()
     now = datetime.datetime.utcnow().replace(tzinfo=utc,second=00, microsecond=00)
     for task in tasks:
-        if task.due == now and task.notified == False:
+        if task.due == now and task.notified is False:
             mail.send_mail('{} is due!'.format(task.title),
                      'Hey {}, your task {} is due! Description: {}'.format(task.owner.first_name, task.title, task.description),
                      'from@example.com', ['{}'.format(task.owner.email)])
-            task.notified == True
+            task.notified = True
+        else:
+            pass
+
+@app.task(name='send_notify_mail')
+def send_notify_mail(message, **kwargs):
+    logger = send_notify_mail.get_logger()
+    conn = get_connection(backend=BACKEND)
+    try:
+        result = conn.senf_messages([message])
+        logger.debug("Message successfully sent")
+        return result
+    except Exception as e:
+        logger.warning("Failed to deliver message")
+        send_notify_mail.retry(exc=e)
+
+

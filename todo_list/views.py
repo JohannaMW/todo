@@ -1,8 +1,11 @@
 from django.core import serializers
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, render_to_response, HttpResponse
 from models import Task, User
 
-def index(request):
+def home(request):
+    return render_to_response("home.html")
+
+def profile(request):
     tasks = Task.objects.filter(owner=request.user).order_by('due', 'title')
     return render(request, "index.html",
         {'tasks': tasks})

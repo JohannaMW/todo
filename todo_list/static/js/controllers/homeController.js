@@ -1,12 +1,7 @@
 function homeController($scope, TaskFactory, UserFactory, $location){
-    $scope.create = false;
     $scope.editing = false;
     var userId;
     var currentTask;
-
-    $scope.creating = function() {
-        $scope.create = true;
-    };
 
     UserFactory.getUser(function(data) {
        userId = data[0].pk;
@@ -54,7 +49,8 @@ function homeController($scope, TaskFactory, UserFactory, $location){
 
     $scope.deleteTask = function(task) {
         TaskFactory.deleteTask(task, function (response) {
-            $scope.tasks.splice(-1, 1);
+            var index = $scope.tasks.indexOf(task);
+            $scope.tasks.splice(index, 1);
             $location.path('/')
         })
     }

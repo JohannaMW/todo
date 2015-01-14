@@ -30,9 +30,8 @@
     <script src="{% static "js/factories/taskFactory.js" %}"></script>
     <script src="{% static "js/factories/userFactory.js" %}"></script>
 
-    <!--- Filters ---->
-
     <!--- Directives ---->
+    <script src="{% static "js/directives/buttonDirective.js" %}"></script>
 
     <!------- Controllers ------->
     <script src="{% static "js/controllers/homeController.js" %}"></script>
@@ -45,14 +44,32 @@
 
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top" role=navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">TODO</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right ">
+        {% if user.is_authenticated %}
+       <li><a href="/accounts/logout/">Logout</a></li>
+       <li><a href= "/profile/">My Profile</a></li>
+        {% else %}
+            <li><a href="/accounts/login/">Login</a></li>
+            <li><a href="/accounts/signup/">Register</a></li>
+        {% endif %}
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div id="Content">
 {% block content %}
 {% endblock content %}
-<!-- Angular -->
-    <div ng-app="todo">
-        <!-- Our view templates will programmatically be inserted into the ng-view div -->
-        <div ng-view>
-
-        </div>
-    </div>
+</div>
 </body>
 </html>

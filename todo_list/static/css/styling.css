@@ -1,4 +1,16 @@
 body {
-    background: gainsboro url("https://unsplash.imgix.net/photo-1416339442236-8ceb164046f8?fit=crop&fm=jpg&h=775&q=75&w=1050") no-repeat center 30px;
+    background: gainsboro url("http://www.imcreator.com/wp-content/uploads/2014/04/11785.jpg") no-repeat center 30px;
     background-size: 90%;
+    margin:50px 0px; padding:0px;
+	text-align:center;
 }
+
+#Content {
+	width:500px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+	border:1px dashed #333;
+	background-color:#eee;
+    margin-top: 200px;
+	}
