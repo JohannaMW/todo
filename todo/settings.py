@@ -65,16 +65,15 @@ ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
-EMAIL_BACKEND = 'todo.backends.CeleryEmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp')
-CELERY_EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'todo.backends.CeleryEmailBackend'
+#CELERY_EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Host for sending e-mail.
-EMAIL_HOST = 'localhost'
-
-# Port for sending e-mail.
-EMAIL_PORT = 1025
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'test.unomena@gmail.com'
+EMAIL_HOST_PASSWORD = 'testunomena'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
