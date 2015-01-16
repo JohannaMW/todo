@@ -47,6 +47,8 @@ INSTALLED_APPS = (
     'rest_framework',
 )
 
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+
 SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
@@ -63,8 +65,9 @@ ROOT_URLCONF = 'todo.urls'
 
 WSGI_APPLICATION = 'todo.wsgi.application'
 
-EMAIL_BACKEND = 'todo_list.backends.CeleryEmailBackend'
-CELERY_EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_BACKEND = 'todo.backends.CeleryEmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp')
+CELERY_EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Host for sending e-mail.
@@ -83,9 +86,9 @@ AUTHENTICATION_BACKENDS = (
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 
 CELERYBEAT_SCHEDULE = {
-    'check-every-60-seconds':  {
+    'check-every-30-seconds':  {
         'task': 'send_due_mail',
-        'schedule': timedelta(seconds=60),
+        'schedule': timedelta(seconds=30),
     }
 }
 

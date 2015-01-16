@@ -16,9 +16,10 @@ BACKEND = getattr(settings, 'CELERY_EMAIL_BACKEND',
 def send_due_mail():
     tasks = models.Task.objects.all()
     now = datetime.datetime.utcnow().replace(tzinfo=utc,second=00, microsecond=00)
+    conn = get_connection(backend=BACKEND)
     for task in tasks:
         if task.due == now and task.notified is False:
-            mail.send_mail('{} is due!'.format(task.title),
+            conn.send_message('{} is due!'.format(task.title),
                      'Hey {}, your task {} is due! Description: {}'.format(task.owner.first_name, task.title, task.description),
                      'from@example.com', ['{}'.format(task.owner.email)])
             task.notified = True
