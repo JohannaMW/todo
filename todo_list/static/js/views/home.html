@@ -2,13 +2,13 @@
 <h1>Your Tasks</h1>
     <ul>
         <div ng-repeat="task in tasks">
-            <li>{{ task.title }}
+            <li><b>{{ task.title }}</b>
             <ul>
                 <li>
-                    {{ task.description }}
+                   {{ task.description }}
                 </li>
                 <li>
-                    {{ task.due }}
+                    Due: {{ task.due }}
                 </li>
             </ul>
             </li>
