@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'djcelery',
     'rest_framework',
+    'bootstrapform',
 )
 
 CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
