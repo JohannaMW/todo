@@ -83,8 +83,8 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend"
 )
 
+CELERY_ALWAYS_EAGER = True
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
-
 CELERYBEAT_SCHEDULE = {
     'check-every-30-seconds':  {
         'task': 'send_due_mail',

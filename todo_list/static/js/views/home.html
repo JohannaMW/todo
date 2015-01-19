@@ -1,21 +1,16 @@
 
 <h1>Your Tasks</h1>
-    <ul>
         <div ng-repeat="task in tasks">
-            <li><b>{{ task.title }}</b>
-            <ul>
-                <li>
+            <h4>{{ task.title }}</h4>
+                <p>
                    {{ task.description }}
-                </li>
-                <li>
+                </p>
+                <p>
                     Due: {{ task.due }}
-                </li>
-            </ul>
-            </li>
+                </p>
             <button ng-click="deleteTask(task);">Delete Task</button>
             <button ng-click="editingTask(task);">Edit Task</button>
         </div>
-    </ul>
 
 <div ng-show="editing">
    <h3>Edit Task</h3>
